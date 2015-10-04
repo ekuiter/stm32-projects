@@ -1,0 +1,14 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+C:\Users\ek\Desktop\stm32\stm32f10x\Project\led_on_taster_loop\MDK-ARM\Project.uvproj
+Project File Date:  03/14/2015
+
+<h2>Output:</h2>
+Build target 'STM3210B-EVAL'
+linking...
+Program Size: Code=708 RO-data=252 RW-data=0 ZI-data=1024  
+".\STM3210B-EVAL\STM3210B-EVAL.axf" - 0 Error(s), 0 Warning(s).
+Load "C:\\Users\\ek\\Desktop\\stm32\\stm32f10x\\Project\\led_on_taster_loop\\MDK-ARM\\STM3210B-EVAL\\STM3210B-EVAL.AXF" 
