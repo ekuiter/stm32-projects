@@ -3,10 +3,12 @@
 
 #include "ChooserWindow.hpp"
 
-#define SHEETFOLDER_PATH "sheetfolders"
+#define SHEETFOLDERS_PATH "sheetfolders"
+#define SHEETFOLDERS_SUFFIX ".txt"
 	
 class SheetFolderChooserWindow : public ChooserWindow {
   private:
+		vector<string> FileDescriptions;
     static void AddFile(char*, char*);
 		virtual void OpenFile(string);
 		

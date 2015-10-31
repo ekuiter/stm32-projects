@@ -32,8 +32,6 @@ simpleRunFunc_t PriorityTable[] = {
 static USART Serial(USART1, 115200);
 SD_Card SD_Card;
 MIDI::MIDI Midi(USART2);
-GPIO_Pin UserKeyA("PC13", GPIO_Mode_IN_FLOATING);
-GPIO_Pin UserKeyB("PB2", GPIO_Mode_IN_FLOATING);
 
 void AppInit(void) {
 	printf("Welcome!\r\n");

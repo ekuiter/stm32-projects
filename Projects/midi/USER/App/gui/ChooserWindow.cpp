@@ -43,7 +43,9 @@ void ChooserWindow::CloseButtonClicked(void) {
 void ChooserWindow::OpenButtonClicked(void) {
 	GUI_EnterBlocking(CloseButton, &bmbusy);
 	OSTimeDlyHMSM(0, 0, 0, 300);
-	OpenFile(FileNames[LISTBOX_GetSel(Listbox)]);
+	int selection = LISTBOX_GetSel(Listbox);
+	if (selection >= 0)
+	  OpenFile(FileNames[selection]);
 	GUI_LeaveBlocking(CloseButton, &bmclose);
 }
 

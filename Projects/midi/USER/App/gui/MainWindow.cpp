@@ -1,6 +1,7 @@
 #include "MainWindow.hpp"
 #include <gui_style.hpp>
 #include <EK/EK_sd.hpp>
+#include <EK/EK_gpio.hpp>
 #include "SheetFolderChooserWindow.hpp"
 #include "ChordFileChooserWindow.hpp"
 
@@ -12,6 +13,7 @@ MainWindow* CurrentMainWindow = NULL;
 extern GUI_CONST_STORAGE GUI_BITMAP bmsheetFolder, bmchordFile;
 extern SD_Card SD_Card;
 extern MIDI::MIDI Midi;
+extern GPIO_Pin UserKeyA, UserKeyB;
 
 MainWindow::MainWindow():
   Window(CreateMainWindow),  SheetFolderButton(GetWidget(ID_BUTTON_0)), 

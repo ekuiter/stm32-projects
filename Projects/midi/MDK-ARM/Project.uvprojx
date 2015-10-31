@@ -474,11 +474,6 @@
               <FilePath>..\USER\App\gui\img\busy.c</FilePath>
             </File>
             <File>
-              <FileName>ChordFileChooserWindowDLG.c</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\USER\App\gui\ChordFileChooserWindowDLG.c</FilePath>
-            </File>
-            <File>
               <FileName>ChordFileChooserWindow.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\USER\App\gui\ChordFileChooserWindow.cpp</FilePath>
@@ -487,6 +482,66 @@
               <FileName>open.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\USER\App\gui\img\open.c</FilePath>
+            </File>
+            <File>
+              <FileName>ChooserWindow.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\USER\App\gui\ChooserWindow.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ChooserWindowDLG.c</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\USER\App\gui\ChooserWindowDLG.c</FilePath>
+            </File>
+            <File>
+              <FileName>SheetFolderChooserWindow.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\USER\App\gui\SheetFolderChooserWindow.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>MainWindowDLG.c</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\USER\App\gui\MainWindowDLG.c</FilePath>
+            </File>
+            <File>
+              <FileName>MainWindow.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\USER\App\gui\MainWindow.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>chordFile.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\App\gui\img\chordFile.c</FilePath>
+            </File>
+            <File>
+              <FileName>sheetFolder.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\App\gui\img\sheetFolder.c</FilePath>
+            </File>
+            <File>
+              <FileName>SheetsWindow.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\USER\App\gui\SheetsWindow.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>SheetsWindowDLG.c</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\USER\App\gui\SheetsWindowDLG.c</FilePath>
+            </File>
+            <File>
+              <FileName>up.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\App\gui\img\up.c</FilePath>
+            </File>
+            <File>
+              <FileName>down.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\App\gui\img\down.c</FilePath>
+            </File>
+            <File>
+              <FileName>search.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\App\gui\img\search.c</FilePath>
             </File>
           </Files>
         </Group>
