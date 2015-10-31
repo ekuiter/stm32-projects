@@ -296,7 +296,7 @@ ARM Macro Assembler    Page 5
   196 0000002A         
   197 0000002A                 END
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
-ork --depend=.\obj\cpu_a.d -o.\obj\cpu_a.o -IC:\Users\ek\Desktop\STM32\Projects
+ork --depend=.\obj\cpu_a.d -o.\obj\cpu_a.o -IC:\Users\ek\Desktop\stm32-projects
 \Projects\midi\MDK-ARM\RTE -IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Devic
 e\Include -IC:\Keil_v5\ARM\CMSIS\Include --predefine="__MICROLIB SETA 1" --pred
 efine="__UVISION_VERSION SETA 514" --predefine="STM32F10X_HD SETA 1" --list=.\l

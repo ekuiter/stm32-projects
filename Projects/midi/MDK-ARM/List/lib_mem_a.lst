@@ -449,8 +449,8 @@ ARM Macro Assembler    Page 7
   312 00000220         
   313 00000220                 END
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
-ork --depend=.\obj\lib_mem_a.d -o.\obj\lib_mem_a.o -IC:\Users\ek\Desktop\STM32\
-Projects\Projects\midi\MDK-ARM\RTE -IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1
+ork --depend=.\obj\lib_mem_a.d -o.\obj\lib_mem_a.o -IC:\Users\ek\Desktop\stm32-
+projects\Projects\midi\MDK-ARM\RTE -IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1
 .0\Device\Include -IC:\Keil_v5\ARM\CMSIS\Include --predefine="__MICROLIB SETA 1
 " --predefine="__UVISION_VERSION SETA 514" --predefine="STM32F10X_HD SETA 1" --
 

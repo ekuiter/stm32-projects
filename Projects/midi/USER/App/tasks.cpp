@@ -7,8 +7,7 @@
 #include <jdksmidi/fileshow.h>
 #include <jdksmidi/sequencer.h>
 #include <jdksmidi/filereadmultitrack.h>
-#include "gui/ChordFileChooserWindow.hpp"
-#include "gui/ChordFileWindow.hpp"
+#include "gui/MainWindow.hpp"
 #include <gui_style.hpp>
 
 using namespace::jdksmidi;
@@ -55,10 +54,10 @@ void AppInit(void) {
 static void RunGUITask(void) {
 	GUI_Touch_Config();
 	WINDOW_SetDefaultBkColor(GUI_STYLE_MAIN);
-	ChordFileChooserWindow* chordFileChooserWindow = new ChordFileChooserWindow(Midi, SD_Card);
-	while (chordFileChooserWindow->Refresh())
+	MainWindow* mainWindow = new MainWindow();
+	while (mainWindow->Refresh())
 		GUI_Delay(50);
-	delete chordFileChooserWindow;
+	delete mainWindow;
 	GUI_Clear();
 	GUITask.Delete();
 }
