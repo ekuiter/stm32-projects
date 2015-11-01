@@ -3,5 +3,6 @@
 
 #define GUI_STYLE_MAIN 0xffcccc
 //#define GUI_STYLE_MAIN_LIGHT 0xffe5e5
+#define BUTTON_BLOCK_DURATION 200
 
 #endif

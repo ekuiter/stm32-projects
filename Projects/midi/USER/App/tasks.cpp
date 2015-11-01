@@ -52,10 +52,7 @@ void AppInit(void) {
 static void RunGUITask(void) {
 	GUI_Touch_Config();
 	WINDOW_SetDefaultBkColor(GUI_STYLE_MAIN);
-	MainWindow* mainWindow = new MainWindow();
-	while (mainWindow->Refresh())
-		GUI_Delay(50);
-	delete mainWindow;
+	MainWindow::RunDialog(new MainWindow());
 	GUI_Clear();
 	GUITask.Delete();
 }

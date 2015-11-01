@@ -19,7 +19,6 @@ class ChordFileWindow : public Window<ChordFileWindow> {
 	  MIDI::ChordFile* ChordFile;
 	  string UserChordStyleName;
 	  BUTTON_Handle PlayPauseButton, StopButton, CloseButton;
-	  map<BUTTON_Handle, const GUI_BITMAP*> ButtonBitmaps;
 	  PROGBAR_Handle ChordFileProgress;
 	  struct {
 		  GUI_RECT Rect;
@@ -52,7 +51,6 @@ class ChordFileWindow : public Window<ChordFileWindow> {
 	  void Pause(void);
     void Stop(void);
 	  void SetListboxSelected(LISTBOX_Handle, string);
-	  void SetButtonBitmap(BUTTON_Handle, const GUI_BITMAP*);
 	  static void AddChordStyle(char*, char*);
 
   public:

@@ -8,12 +8,15 @@
 	
 class SheetFolderChooserWindow : public ChooserWindow {
   private:
+		BUTTON_Handle SearchButton;
 		vector<string> FileDescriptions;
     static void AddFile(char*, char*);
 		virtual void OpenFile(string);
+	  void RunSearch(void);
 		
 	public:
 		SheetFolderChooserWindow(class SD_Card&);
+	  void SearchButtonClicked(void);
 };
 
 #endif

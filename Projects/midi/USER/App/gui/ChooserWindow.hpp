@@ -9,15 +9,13 @@ class ChooserWindow : public Window<ChooserWindow> {
 	protected:
 		SD_Card& SD_Card;
 	  virtual void OpenFile(string) = 0;
-		
-  private:
-	  BUTTON_Handle CloseButton, OpenButton;
+		BUTTON_Handle CloseButton, OpenButton;
 		bool ShouldClose;
 	
   public:
 	  vector<string> FileNames;
 	  LISTBOX_Handle Listbox;
-		ChooserWindow(class SD_Card&);
+		ChooserWindow(createWindowFunc_t, class SD_Card&);
 	  ~ChooserWindow();
 	  void CloseButtonClicked(void);
 	  void OpenButtonClicked(void);

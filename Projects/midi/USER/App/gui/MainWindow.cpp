@@ -23,15 +23,8 @@ MainWindow::MainWindow():
 		return;
 	}
 	CurrentMainWindow = this;
-	
-	BUTTON_SetFocussable(SheetFolderButton, 0);
-	BUTTON_SetFocussable(ChordFileButton, 0);
-	WIDGET_SetEffect(SheetFolderButton, &WIDGET_Effect_None);
-	WIDGET_SetEffect(ChordFileButton, &WIDGET_Effect_None);
-	BUTTON_SetBkColor(SheetFolderButton, BUTTON_BI_UNPRESSED, GUI_STYLE_MAIN);
-	BUTTON_SetBitmap(SheetFolderButton, BUTTON_BI_UNPRESSED, &bmsheetFolder);
-	BUTTON_SetBkColor(ChordFileButton, BUTTON_BI_UNPRESSED, GUI_STYLE_MAIN);
-	BUTTON_SetBitmap(ChordFileButton, BUTTON_BI_UNPRESSED, &bmchordFile);
+	SetButtonStyle(SheetFolderButton, &bmsheetFolder, GUI_STYLE_MAIN);
+	SetButtonStyle(ChordFileButton, &bmchordFile, GUI_STYLE_MAIN);
 }
 	
 MainWindow::~MainWindow() {
@@ -39,17 +32,13 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::ChooseSheetFolderButtonClicked(void) {
-	SheetFolderChooserWindow* sheetFolderChooserWindow = new SheetFolderChooserWindow(SD_Card);
-	while (sheetFolderChooserWindow->Refresh())
-		GUI_Delay(50);
-	delete sheetFolderChooserWindow;
+	Block(BUTTON_BLOCK_DURATION, SheetFolderButton);
+	RunDialog(new SheetFolderChooserWindow(SD_Card));
 }
 
 void MainWindow::ChooseChordFileButtonClicked(void) {
-	ChordFileChooserWindow* chordFileChooserWindow = new ChordFileChooserWindow(Midi, SD_Card);
-	while (chordFileChooserWindow->Refresh())
-		GUI_Delay(50);
-	delete chordFileChooserWindow;
+	Block(BUTTON_BLOCK_DURATION, ChordFileButton);
+	RunDialog(new ChordFileChooserWindow(Midi, SD_Card));
 }
 
 bool MainWindow::Refresh(void) {

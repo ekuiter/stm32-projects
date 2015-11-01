@@ -25,15 +25,9 @@ ChordFileWindow::ChordFileWindow(string fileName, MIDI::MIDI& midi, class SD_Car
 	CurrentChordFileWindow = this;
 	Midi.SetTempo(ChordFile->GetTempo());
 		
-	BUTTON_SetFocussable(PlayPauseButton, 0);
-	BUTTON_SetFocussable(StopButton, 0);
-	BUTTON_SetFocussable(CloseButton, 0);
-	WIDGET_SetEffect(PlayPauseButton, &WIDGET_Effect_None);
-	WIDGET_SetEffect(StopButton, &WIDGET_Effect_None);
-	WIDGET_SetEffect(CloseButton, &WIDGET_Effect_None);
-	SetButtonBitmap(PlayPauseButton, &bmplay);
-	SetButtonBitmap(StopButton, &bmstop);
-	SetButtonBitmap(CloseButton, &bmclose);
+	SetButtonStyle(PlayPauseButton, &bmplay, GUI_STYLE_MAIN);
+	SetButtonStyle(StopButton, &bmstop, GUI_STYLE_MAIN);
+	SetButtonStyle(CloseButton, &bmclose, GUI_STYLE_MAIN);
 		
   PROGBAR_SetMinMax(ChordFileProgress, 0, ChordFile->GetTotalBeats() * 1000);
 	WM_GetWindowRectEx(ChordFileProgress, &ChordFileProgressRectangle.Rect);
@@ -62,20 +56,21 @@ ChordFileWindow::~ChordFileWindow() {
 void ChordFileWindow::PlayPauseButtonClicked(void) {
 	if (ChordFile->GetState() == MIDI::PlayState) {
 		Pause();
-		SetButtonBitmap(PlayPauseButton, &bmplay);
+		SetButtonStyle(PlayPauseButton, &bmplay);
 	} else {
 		ChordFile->Play(UserChordStyleName);
-		SetButtonBitmap(PlayPauseButton, &bmpause);
+		SetButtonStyle(PlayPauseButton, &bmpause);
   }
 }
 
 void ChordFileWindow::StopButtonClicked(void) {
 	Stop();
-	SetButtonBitmap(PlayPauseButton, &bmplay);
+	SetButtonStyle(PlayPauseButton, &bmplay);
 }
 
 void ChordFileWindow::CloseButtonClicked(void) {
-  ShouldClose = true;
+  Block(BUTTON_BLOCK_DURATION, CloseButton, &bmbusy);
+	ShouldClose = true;
 }
 
 void ChordFileWindow::ChordFilePercentageClicked(void) {
@@ -114,7 +109,7 @@ bool ChordFileWindow::Refresh() {
 	PROGBAR_SetValue(ChordFileProgress, ChordFile->GetBeat() * 1000);
 	if (runCount % 4 == 0) {
 		if (ChordFile->GetState() == MIDI::StopState)
-			SetButtonBitmap(PlayPauseButton, &bmplay);
+			SetButtonStyle(PlayPauseButton, &bmplay);
 		if (UserChordStyleName.empty()) {
 		  string lastChordStyle, currentChordStyle = ChordFile->GetCurrentChordStyle()->GetStyleName();
 			if (ChordFile->GetLastChordStyle() != NULL)
@@ -165,14 +160,6 @@ void ChordFileWindow::SetListboxSelected(LISTBOX_Handle listbox, string select) 
 			break;
 		}
 	}
-}
-
-void ChordFileWindow::SetButtonBitmap(BUTTON_Handle button, const GUI_BITMAP* bitmap) {
-	if (ButtonBitmaps[button] != bitmap) {
-		BUTTON_SetBkColor(button, BUTTON_BI_UNPRESSED, GUI_STYLE_MAIN);
-		BUTTON_SetBitmap(button, BUTTON_BI_UNPRESSED, bitmap);
-		ButtonBitmaps[button] = bitmap;
-  }
 }
 
 void ChordFileWindow::MarqueeText::Advance(void) {
