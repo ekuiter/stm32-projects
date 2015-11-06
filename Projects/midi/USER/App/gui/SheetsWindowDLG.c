@@ -23,6 +23,7 @@
 #include "SheetsWindow.hpp"
 #include <EK/EK_retarget.hpp>
 #include "LISTVIEW.h"
+#include "PROGBAR.h"
 // USER END
 
 #include "DIALOG.h"
@@ -39,6 +40,7 @@
 #define ID_LISTVIEW_0    (GUI_ID_USER + 0x04)
 #define ID_BUTTON_2    (GUI_ID_USER + 0x05)
 #define ID_BUTTON_3    (GUI_ID_USER + 0x06)
+#define ID_PROGBAR_0    (GUI_ID_USER + 0x07)
 
 
 // USER START (Optionally insert additional defines)
@@ -64,9 +66,10 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
   { WINDOW_CreateIndirect, "SheetsWindow", ID_WINDOW_0, 0, 0, 320, 240, 0, 0x0, 0 },
   { BUTTON_CreateIndirect, "CloseButton", ID_BUTTON_0, 275, 10, 35, 35, 0, 0x0, 0 },
   { BUTTON_CreateIndirect, "SearchButton", ID_BUTTON_1, 260, 60, 50, 50, 0, 0x0, 0 },
-  { LISTVIEW_CreateIndirect, "Listview", ID_LISTVIEW_0, 10, 10, 240, 220, 0, 0x0, 0 },
+  { LISTVIEW_CreateIndirect, "Listview", ID_LISTVIEW_0, 10, 10, 240, 190, 0, 0x0, 0 },
   { BUTTON_CreateIndirect, "UpButton", ID_BUTTON_2, 260, 120, 50, 50, 0, 0x0, 0 },
   { BUTTON_CreateIndirect, "DownButton", ID_BUTTON_3, 260, 180, 50, 50, 0, 0x0, 0 },
+  { PROGBAR_CreateIndirect, "SheetProgress", ID_PROGBAR_0, 10, 210, 240, 20, 0, 0x0, 0 },
   // USER START (Optionally insert additional widgets)
   // USER END
 };
@@ -124,6 +127,11 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
     //
     hItem = WM_GetDialogItem(pMsg->hWin, ID_BUTTON_3);
     BUTTON_SetText(hItem, "");
+    //
+    // Initialization of 'SheetProgress'
+    //
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_PROGBAR_0);
+    PROGBAR_SetFont(hItem, GUI_FONT_13_1);
     // USER START (Optionally insert additional code for further widget initialization)
     // USER END
     break;
@@ -173,6 +181,7 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
         break;
       case WM_NOTIFICATION_SEL_CHANGED:
         // USER START (Optionally insert code for reacting on notification message)
+			  CurrentSheetsWindow->DebouncedClick(&SheetsWindow::ListviewValueChanged, 100);
         // USER END
         break;
       // USER START (Optionally insert additional code for further notification handling)

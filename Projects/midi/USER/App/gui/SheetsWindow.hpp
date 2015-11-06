@@ -5,6 +5,9 @@
 #include <EK/EK_sd.hpp>
 #include <vector>
 #include "LISTVIEW.h"
+#include "PROGBAR.h"
+
+using std::vector;
 	
 class SheetsWindow : public Window<SheetsWindow> {
 	public:
@@ -13,9 +16,12 @@ class SheetsWindow : public Window<SheetsWindow> {
 	private:
 	  BUTTON_Handle CloseButton, SearchButton, UpButton, DownButton;
 	  LISTVIEW_Handle Listview;
+		PROGBAR_Handle SheetProgress;
 	  enum Mode Mode;
 	  string Query;
 	  bool ShouldClose, ShouldTriggerSearch;
+		int ListviewIndex;
+	  vector<int> SheetPercentages;
 	  static void AddFile(char*, char*);
 	  void ReadFile(const char*, string);
 	
@@ -26,6 +32,7 @@ class SheetsWindow : public Window<SheetsWindow> {
 	  void SearchButtonClicked(void);
 	  void UpButtonClicked(void);
 	  void DownButtonClicked(void);
+	  void ListviewValueChanged(void);
 	  virtual bool Refresh(void);
 	  bool GetShouldTriggerSearch(void);
 };

@@ -543,6 +543,26 @@
               <FileType>1</FileType>
               <FilePath>..\USER\App\gui\img\search.c</FilePath>
             </File>
+            <File>
+              <FileName>SheetFolderChooserWindowDLG.c</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\USER\App\gui\SheetFolderChooserWindowDLG.c</FilePath>
+            </File>
+            <File>
+              <FileName>SearchWindowDLG.c</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\USER\App\gui\SearchWindowDLG.c</FilePath>
+            </File>
+            <File>
+              <FileName>SearchWindow.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\USER\App\gui\SearchWindow.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>back.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\App\gui\img\back.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

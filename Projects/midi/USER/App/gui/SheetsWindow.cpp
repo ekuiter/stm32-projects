@@ -13,9 +13,10 @@ extern WM_HWIN CreateSheetsWindow(void);
 SheetsWindow* CurrentSheetsWindow = NULL;
 extern GUI_CONST_STORAGE GUI_BITMAP bmclose, bmsearch, bmup, bmdown, bmbusy;
 
-SheetsWindow::SheetsWindow(string query, SD_Card& SD_Card, enum Mode mode): Window(CreateSheetsWindow), CloseButton(GetWidget(ID_BUTTON_0)),
-  SearchButton(GetWidget(ID_BUTTON_1)), UpButton(GetWidget(ID_BUTTON_2)), DownButton(GetWidget(ID_BUTTON_3)),
-	Listview(GetWidget(ID_LISTVIEW_0)),	Mode(mode), Query(query), ShouldClose(false), ShouldTriggerSearch(false) {
+SheetsWindow::SheetsWindow(string query, SD_Card& SD_Card, enum Mode mode): Window(CreateSheetsWindow),
+	CloseButton(GetWidget(ID_BUTTON_0)), SearchButton(GetWidget(ID_BUTTON_1)), UpButton(GetWidget(ID_BUTTON_2)),
+  DownButton(GetWidget(ID_BUTTON_3)), Listview(GetWidget(ID_LISTVIEW_0)),	SheetProgress(GetWidget(ID_PROGBAR_0)),
+  Mode(mode), Query(query), ShouldClose(false), ShouldTriggerSearch(false), ListviewIndex(0) {
 	if (CurrentSheetsWindow != NULL) {
 	  printf("Only one SheetsWindow allowed at a time!\r\n");
 		return;
@@ -25,6 +26,7 @@ SheetsWindow::SheetsWindow(string query, SD_Card& SD_Card, enum Mode mode): Wind
 	SetButtonStyle(SearchButton, &bmsearch, GUI_STYLE_MAIN);
 	SetButtonStyle(UpButton, &bmup, GUI_STYLE_MAIN);
 	SetButtonStyle(DownButton, &bmdown, GUI_STYLE_MAIN);
+	PROGBAR_SetMinMax(SheetProgress, 0, 100);
 	
 	if (Mode == FILENAME) {
 	  CurrentSheetsWindow->ReadFile((string(SHEETFOLDERS_PATH) + "/" + Query + SHEETFOLDERS_SUFFIX).c_str(), Query);
@@ -32,14 +34,15 @@ SheetsWindow::SheetsWindow(string query, SD_Card& SD_Card, enum Mode mode): Wind
 		if (Query.length() < 3) {
 		  const char* rowBuf[3] = { "", "Search too short", "" };
   		LISTVIEW_AddRow(Listview, rowBuf);
-		} else {
-	    const int len = 100;
-		  char buf[len] = SHEETFOLDERS_PATH;
-		  SD_Card.List(buf, len, AddFile);
-			if (LISTVIEW_GetNumRows(Listview) == 0) {
-			  const char* rowBuf[3] = { "", "No sheets found", "" };
-  		  LISTVIEW_AddRow(Listview, rowBuf);
-			}
+			return;
+		}
+		const int len = 100;
+		char buf[len] = SHEETFOLDERS_PATH;
+		SD_Card.List(buf, len, AddFile);
+		if (LISTVIEW_GetNumRows(Listview) == 0) {
+			const char* rowBuf[3] = { "", "No sheets found", "" };
+			LISTVIEW_AddRow(Listview, rowBuf);
+			return;
 		}
 	}
 }
@@ -59,6 +62,7 @@ static int stristr(string str1, string str2) {
 }
 
 void SheetsWindow::ReadFile(const char* path, string fileName) {
+	int fileIndex = 0, oldListviewIndex = ListviewIndex;
   FILE* f = fopen(path, "r");
 	if (!f) {
 		printf("File could not be opened: %s\r\n", path);
@@ -73,13 +77,18 @@ void SheetsWindow::ReadFile(const char* path, string fileName) {
 			continue;
 		if (sscanf(buf, "\"%49[^\"]\",\"%49[^\"]\"\r\n", titleBuf, artistBuf) < 2)
 			artistBuf[0] = '\0';
+		fileIndex++;
 		if (Mode == SEARCH && !stristr(titleBuf, Query) && !stristr(artistBuf, Query))
 			continue;
 		rowBuf[1] = titleBuf;
 		rowBuf[2] = artistBuf;
 		LISTVIEW_AddRow(Listview, rowBuf);
-	}		
+	  SheetPercentages.push_back(fileIndex);
+		ListviewIndex++;
+	}
 	fclose(f);
+	for (int i = oldListviewIndex; i < ListviewIndex; i++)
+	  SheetPercentages[i] = SheetPercentages[i] * 100 / fileIndex;
 }
 	
 SheetsWindow::~SheetsWindow() {
@@ -99,10 +108,20 @@ void SheetsWindow::SearchButtonClicked(void) {
 
 void SheetsWindow::UpButtonClicked(void) {
 	LISTVIEW_SetSel(Listview, LISTVIEW_GetSel(Listview) - LISTVIEW_SCROLL_ITEMS);
+	ListviewValueChanged();
 }
 	
 void SheetsWindow::DownButtonClicked(void) {
   LISTVIEW_SetSel(Listview, LISTVIEW_GetSel(Listview) + LISTVIEW_SCROLL_ITEMS);
+	ListviewValueChanged();
+}
+
+void SheetsWindow::ListviewValueChanged(void) {
+	int i = LISTVIEW_GetSel(Listview);
+	if (i >= 0 && i < SheetPercentages.size())
+	  PROGBAR_SetValue(SheetProgress, SheetPercentages[i]);
+	else
+	  PROGBAR_SetValue(SheetProgress, 0);
 }
 
 bool SheetsWindow::Refresh(void) {
