@@ -8,6 +8,7 @@
 #include <jdksmidi/sequencer.h>
 #include <jdksmidi/filereadmultitrack.h>
 #include "gui/MainWindow.hpp"
+#include "gui/KeyboardWindow.hpp"
 #include <gui_style.hpp>
 
 using namespace::jdksmidi;
@@ -41,11 +42,25 @@ void AppInit(void) {
   SD_Card.PrintSize();
 	TouchPanelTask.Run();
   GUITask.Run();
+	/*while (1) {
+	  if (Midi.Available()) {
+		  MIDI::Message message = Midi.Read();
+		  if (message.Is(MIDI::Command::NoteOn))
+		  	printf("%s\n", static_cast<string>(message.GetNote()).c_str());
+  	}
+	}*/
 	while (1) {
 		Task<>::ReportStackUsages();
 		Heap.ReportHeapUsage();
 		printf("\r\n");
 	  OSTimeDlyHMSM(0, 0, 5, 0);
+	}
+}
+
+static void RunTouchPanelTask(void) {   
+	while (1) {
+	 GUI_TOUCH_Exec();
+	 OSTimeDlyHMSM(0, 0, 0, 20);
 	}
 }
 
@@ -55,13 +70,6 @@ static void RunGUITask(void) {
 	MainWindow::RunDialog(new MainWindow());
 	GUI_Clear();
 	GUITask.Delete();
-}
-
-static void RunTouchPanelTask(void) {   
-	while (1) {
-	 GUI_TOUCH_Exec();
-	 OSTimeDlyHMSM(0, 0, 0, 20);
-	}
 }
 
 /*static void RunMIDITask(void) {	

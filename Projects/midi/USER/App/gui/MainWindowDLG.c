@@ -39,6 +39,8 @@
 #define ID_TEXT_1 (GUI_ID_USER + 0x04)
 #define ID_TEXT_2 (GUI_ID_USER + 0x05)
 #define ID_TEXT_3 (GUI_ID_USER + 0x06)
+#define ID_BUTTON_2 (GUI_ID_USER + 0x07)
+#define ID_TEXT_4 (GUI_ID_USER + 0x08)
 
 
 // USER START (Optionally insert additional defines)
@@ -62,12 +64,14 @@
 */
 static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
   { WINDOW_CreateIndirect, "MainWindow", ID_WINDOW_0, 0, 0, 320, 240, 0, 0x0, 0 },
-  { BUTTON_CreateIndirect, "ChooseSheetFolderButton", ID_BUTTON_0, 50, 90, 100, 100, 0, 0x0, 0 },
-  { BUTTON_CreateIndirect, "ChooseChordFileButton", ID_BUTTON_1, 170, 90, 100, 100, 0, 0x0, 0 },
+  { BUTTON_CreateIndirect, "ChooseSheetFolderButton", ID_BUTTON_0, 15, 100, 90, 90, 0, 0x0, 0 },
+  { BUTTON_CreateIndirect, "ChooseChordFileButton", ID_BUTTON_1, 115, 100, 90, 90, 0, 0x0, 0 },
   { TEXT_CreateIndirect, "WelcomeText1", ID_TEXT_0, 10, 20, 300, 25, 0, 0x64, 0 },
-  { TEXT_CreateIndirect, "ChooseSheetFolderText", ID_TEXT_1, 50, 190, 100, 20, 0, 0x64, 0 },
-  { TEXT_CreateIndirect, "Text", ID_TEXT_2, 170, 190, 100, 20, 0, 0x64, 0 },
+  { TEXT_CreateIndirect, "ChooseSheetFolderText", ID_TEXT_1, 10, 190, 100, 20, 0, 0x64, 0 },
+  { TEXT_CreateIndirect, "ChooseChordFileText", ID_TEXT_2, 115, 190, 90, 20, 0, 0x64, 0 },
   { TEXT_CreateIndirect, "WelcomeText2", ID_TEXT_3, 10, 50, 300, 25, 0, 0x64, 0 },
+  { BUTTON_CreateIndirect, "KeyboardButton", ID_BUTTON_2, 215, 100, 90, 90, 0, 0x0, 0 },
+  { TEXT_CreateIndirect, "KeyboardText", ID_TEXT_4, 215, 190, 90, 20, 0, 0x64, 0 },
   // USER START (Optionally insert additional widgets)
   // USER END
 };
@@ -120,7 +124,7 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
     TEXT_SetText(hItem, "Search sheet folders");
     TEXT_SetTextAlign(hItem, GUI_TA_HCENTER | GUI_TA_VCENTER);
     //
-    // Initialization of 'Text'
+    // Initialization of 'ChooseChordFileText'
     //
     hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_2);
     TEXT_SetTextAlign(hItem, GUI_TA_HCENTER | GUI_TA_VCENTER);
@@ -132,6 +136,18 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
     TEXT_SetTextAlign(hItem, GUI_TA_HCENTER | GUI_TA_VCENTER);
     TEXT_SetFont(hItem, GUI_FONT_24_1);
     TEXT_SetText(hItem, "life would be a mistake.");
+    //
+    // Initialization of 'KeyboardButton'
+    //
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_BUTTON_2);
+    BUTTON_SetText(hItem, "");
+    //
+    // Initialization of 'KeyboardText'
+    //
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_4);
+    TEXT_SetTextColor(hItem, 0x00000000);
+    TEXT_SetTextAlign(hItem, GUI_TA_HCENTER | GUI_TA_VCENTER);
+    TEXT_SetText(hItem, "Open keyboard");
     // USER START (Optionally insert additional code for further widget initialization)
     // USER END
     break;
@@ -160,6 +176,21 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
         // USER START (Optionally insert code for reacting on notification message)
       	CurrentMainWindow->DebouncedClick(&MainWindow::ChooseChordFileButtonClicked, 300);  
 			        // USER END
+        break;
+      case WM_NOTIFICATION_RELEASED:
+        // USER START (Optionally insert code for reacting on notification message)
+        // USER END
+        break;
+      // USER START (Optionally insert additional code for further notification handling)
+      // USER END
+      }
+      break;
+    case ID_BUTTON_2: // Notifications sent by 'KeyboardButton'
+      switch(NCode) {
+      case WM_NOTIFICATION_CLICKED:
+        // USER START (Optionally insert code for reacting on notification message)
+			  CurrentMainWindow->DebouncedClick(&MainWindow::KeyboardButtonClicked, 300);
+        // USER END
         break;
       case WM_NOTIFICATION_RELEASED:
         // USER START (Optionally insert code for reacting on notification message)

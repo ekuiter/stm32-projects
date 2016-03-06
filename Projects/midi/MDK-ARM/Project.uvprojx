@@ -449,39 +449,9 @@
               <FilePath>..\USER\App\gui\ChordFileWindow.cpp</FilePath>
             </File>
             <File>
-              <FileName>pause.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\App\gui\img\pause.c</FilePath>
-            </File>
-            <File>
-              <FileName>play.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\App\gui\img\play.c</FilePath>
-            </File>
-            <File>
-              <FileName>stop.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\App\gui\img\stop.c</FilePath>
-            </File>
-            <File>
-              <FileName>close.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\App\gui\img\close.c</FilePath>
-            </File>
-            <File>
-              <FileName>busy.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\App\gui\img\busy.c</FilePath>
-            </File>
-            <File>
               <FileName>ChordFileChooserWindow.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\USER\App\gui\ChordFileChooserWindow.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>open.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\App\gui\img\open.c</FilePath>
             </File>
             <File>
               <FileName>ChooserWindow.cpp</FileName>
@@ -509,16 +479,6 @@
               <FilePath>..\USER\App\gui\MainWindow.cpp</FilePath>
             </File>
             <File>
-              <FileName>chordFile.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\App\gui\img\chordFile.c</FilePath>
-            </File>
-            <File>
-              <FileName>sheetFolder.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\App\gui\img\sheetFolder.c</FilePath>
-            </File>
-            <File>
               <FileName>SheetsWindow.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\USER\App\gui\SheetsWindow.cpp</FilePath>
@@ -527,21 +487,6 @@
               <FileName>SheetsWindowDLG.c</FileName>
               <FileType>8</FileType>
               <FilePath>..\USER\App\gui\SheetsWindowDLG.c</FilePath>
-            </File>
-            <File>
-              <FileName>up.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\App\gui\img\up.c</FilePath>
-            </File>
-            <File>
-              <FileName>down.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\App\gui\img\down.c</FilePath>
-            </File>
-            <File>
-              <FileName>search.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\App\gui\img\search.c</FilePath>
             </File>
             <File>
               <FileName>SheetFolderChooserWindowDLG.c</FileName>
@@ -559,9 +504,74 @@
               <FilePath>..\USER\App\gui\SearchWindow.cpp</FilePath>
             </File>
             <File>
+              <FileName>KeyboardWindow.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\USER\App\gui\KeyboardWindow.cpp</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>GUI_Bitmaps</GroupName>
+          <Files>
+            <File>
               <FileName>back.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\USER\App\gui\img\back.c</FilePath>
+            </File>
+            <File>
+              <FileName>busy.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\App\gui\img\busy.c</FilePath>
+            </File>
+            <File>
+              <FileName>chordFile.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\App\gui\img\chordFile.c</FilePath>
+            </File>
+            <File>
+              <FileName>close.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\App\gui\img\close.c</FilePath>
+            </File>
+            <File>
+              <FileName>down.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\App\gui\img\down.c</FilePath>
+            </File>
+            <File>
+              <FileName>open.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\App\gui\img\open.c</FilePath>
+            </File>
+            <File>
+              <FileName>pause.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\App\gui\img\pause.c</FilePath>
+            </File>
+            <File>
+              <FileName>play.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\App\gui\img\play.c</FilePath>
+            </File>
+            <File>
+              <FileName>search.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\App\gui\img\search.c</FilePath>
+            </File>
+            <File>
+              <FileName>sheetFolder.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\App\gui\img\sheetFolder.c</FilePath>
+            </File>
+            <File>
+              <FileName>stop.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\App\gui\img\stop.c</FilePath>
+            </File>
+            <File>
+              <FileName>up.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\App\gui\img\up.c</FilePath>
             </File>
           </Files>
         </Group>

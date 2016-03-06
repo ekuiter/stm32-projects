@@ -21,6 +21,10 @@
 
 using jdksmidi::MIDITempo;
 
+#include <uCOS-II/Source/ucos_ii.h>
+#include <uCOS-II/Ports/ARM-Cortex-M3/RealView/os_cpu.h>
+#include <uC-CPU/ARM-Cortex-M3/RealView/cpu.h>
+
 namespace MIDI {
 	namespace Command {
 		enum Command {
@@ -105,12 +109,9 @@ namespace MIDI {
 						dataLength += 0;
 						break;
 				}
-				printf("IN: 0x%02x", status);
 				uint8_t* data = new uint8_t[dataLength];
-				for (int i = 0; i < dataLength; i++) {
+				for (int i = 0; i < dataLength; i++)
 				  data[i] = ReadByte();
-				  printf(" 0x%02x", data[i]);
-				}
 				return Message(command, channel, data);
 			}
 			

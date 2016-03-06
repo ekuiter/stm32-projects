@@ -33,21 +33,20 @@
 *
 **********************************************************************
 */
-#define ID_WINDOW_0 (GUI_ID_USER + 0x01)
-#define ID_BUTTON_0 (GUI_ID_USER + 0x0D)
-#define ID_BUTTON_1 (GUI_ID_USER + 0x02)
-#define ID_BUTTON_2 (GUI_ID_USER + 0x04)
-#define ID_PROGBAR_0 (GUI_ID_USER + 0x06)
-#define ID_SLIDER_0 (GUI_ID_USER + 0x07)
-#define ID_TEXT_0 (GUI_ID_USER + 0x08)
-#define ID_TEXT_1 (GUI_ID_USER + 0x09)
-#define ID_SLIDER_1 (GUI_ID_USER + 0x0A)
-#define ID_LISTBOX_0 (GUI_ID_USER + 0x0B)
-#define ID_TEXT_2 (GUI_ID_USER + 0x0C)
-#define ID_BUTTON_3 (GUI_ID_USER + 0x0E)
-#define ID_TEXT_3 (GUI_ID_USER + 0x0F)
-#define ID_TEXT_4 (GUI_ID_USER + 0x10)
-#define ID_TEXT_5 (GUI_ID_USER + 0x11)
+#define ID_WINDOW_0    (GUI_ID_USER + 0x01)
+#define ID_BUTTON_0    (GUI_ID_USER + 0x0D)
+#define ID_BUTTON_1    (GUI_ID_USER + 0x02)
+#define ID_BUTTON_2    (GUI_ID_USER + 0x04)
+#define ID_PROGBAR_0    (GUI_ID_USER + 0x06)
+#define ID_SLIDER_0    (GUI_ID_USER + 0x07)
+#define ID_TEXT_0    (GUI_ID_USER + 0x08)
+#define ID_TEXT_1    (GUI_ID_USER + 0x09)
+#define ID_SLIDER_1    (GUI_ID_USER + 0x0A)
+#define ID_LISTBOX_0    (GUI_ID_USER + 0x0B)
+#define ID_TEXT_2    (GUI_ID_USER + 0x0C)
+#define ID_BUTTON_3    (GUI_ID_USER + 0x0E)
+#define ID_TEXT_3    (GUI_ID_USER + 0x0F)
+#define ID_TEXT_4    (GUI_ID_USER + 0x10)
 
 
 // USER START (Optionally insert additional defines)
@@ -84,7 +83,6 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
   { BUTTON_CreateIndirect, "CloseButton", ID_BUTTON_3, 275, 10, 35, 35, 0, 0x0, 0 },
   { TEXT_CreateIndirect, "TitleText", ID_TEXT_3, 130, 10, 135, 25, 0, 0x64, 0 },
   { TEXT_CreateIndirect, "ArtistText", ID_TEXT_4, 130, 35, 135, 25, 0, 0x64, 0 },
-  { TEXT_CreateIndirect, "NoteText", ID_TEXT_5, 276, 50, 35, 15, 0, 0x64, 0 },
   // USER START (Optionally insert additional widgets)
   // USER END
 };
@@ -160,11 +158,6 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
     //
     hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_4);
     TEXT_SetFont(hItem, GUI_FONT_24_1);
-    TEXT_SetText(hItem, "");
-    //
-    // Initialization of 'NoteText'
-    //
-    hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_5);
     TEXT_SetText(hItem, "");
     // USER START (Optionally insert additional code for further widget initialization)
     // USER END

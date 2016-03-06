@@ -46,7 +46,6 @@ class ChordFileWindow : public Window<ChordFileWindow> {
 			void Advance(void);
 		};
 		MarqueeText TitleText, ArtistText;
-		TEXT_Handle NoteText;
 	  bool ListboxClicked, ShouldClose;
 	  void Pause(void);
     void Stop(void);

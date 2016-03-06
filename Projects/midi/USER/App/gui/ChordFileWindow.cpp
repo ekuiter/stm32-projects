@@ -17,7 +17,7 @@ ChordFileWindow::ChordFileWindow(string fileName, MIDI::MIDI& midi, class SD_Car
   Window(CreateChordFileWindow), Midi(midi), SD_Card(SD_Card), ChordFile(new MIDI::ChordFile(fileName, midi)),
   PlayPauseButton(GetWidget(ID_BUTTON_1)), StopButton(GetWidget(ID_BUTTON_2)), CloseButton(GetWidget(ID_BUTTON_3)), ChordFileProgress(GetWidget(ID_PROGBAR_0)),
 	VelocitySlider(GetWidget(ID_SLIDER_0)), TempoSlider(GetWidget(ID_SLIDER_1)), ChordStyleListbox(GetWidget(ID_LISTBOX_0)), TitleText(GetWidget(ID_TEXT_3),
-	ChordFile->GetTitle()), ArtistText(GetWidget(ID_TEXT_4), ChordFile->GetArtist()), NoteText(GetWidget(ID_TEXT_5)), ListboxClicked(true), ShouldClose(false) {
+	ChordFile->GetTitle()), ArtistText(GetWidget(ID_TEXT_4), ChordFile->GetArtist()), ListboxClicked(true), ShouldClose(false) {
 	if (CurrentChordFileWindow != NULL) {
 	  printf("Only one ChordFileWindow allowed at a time!\r\n");
 		return;
@@ -124,11 +124,6 @@ bool ChordFileWindow::Refresh() {
 	if (ChordFileProgressRectangle.Clicked(PIDState))
 		DebouncedClick(&ChordFileWindow::ChordFilePercentageClicked, 300);
 	runCount++;
-	/*if (Midi.Available()) {
-		MIDI::Message message = Midi.Read();
-		if (message.Is(MIDI::Command::NoteOn))
-			TEXT_SetText(NoteText, static_cast<string>(message.GetNote()).c_str());
-	}*/
   return !ShouldClose;
 }
 

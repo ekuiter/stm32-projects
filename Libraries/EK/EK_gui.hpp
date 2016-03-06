@@ -31,16 +31,16 @@ template<typename T>
 class Window {
 	protected:
 		typedef WM_HWIN (*createWindowFunc_t)(void);
+		WM_HWIN Handle;
 	  map<BUTTON_Handle, const GUI_BITMAP*> ButtonBitmaps;
 	
   private:
     typedef void (T::*buttonClickFunc_t)(void);	
-		WM_HWIN Handle;
 	  createWindowFunc_t CreateWindowFunc;
 	  uint32_t LastClick;
 	
-	  void SetButtonStyle(BUTTON_Handle button, const GUI_BITMAP* bitmap, GUI_COLOR bkColor, bool setBkColor) {
-			if (ButtonBitmaps[button] != bitmap) {
+	  void SetButtonStyle(BUTTON_Handle button, const GUI_BITMAP* bitmap, GUI_COLOR bkColor, bool setBkColor, bool forceSet = false) {
+			if (forceSet || ButtonBitmaps[button] != bitmap) {
 				BUTTON_SetFocussable(button, 0);
 				WIDGET_SetEffect(button, &WIDGET_Effect_None);
 				if (setBkColor)
@@ -65,6 +65,14 @@ class Window {
 		
 		void SetButtonStyle(BUTTON_Handle button, const GUI_BITMAP* bitmap) {
 			SetButtonStyle(button, bitmap, 0, false);
+		}
+		
+		void ForceButtonStyle(BUTTON_Handle button, const GUI_BITMAP* bitmap, GUI_COLOR bkColor) {
+			SetButtonStyle(button, bitmap, bkColor, true, true);
+		}
+		
+		void ForceButtonStyle(BUTTON_Handle button, const GUI_BITMAP* bitmap) {
+			SetButtonStyle(button, bitmap, 0, false, true);
 		}
 		
 		string GetListboxText(LISTBOX_Handle listbox, int i) {
@@ -92,11 +100,11 @@ class Window {
 	
 	public:
 		Window(createWindowFunc_t createWindowFunc): Handle(0), CreateWindowFunc(createWindowFunc), LastClick(0) {
-		  Handle = CreateWindowFunc();
+		  Handle = CreateWindowFunc != NULL ? CreateWindowFunc() : NULL;
 		}
 			
 		~Window() {
-			if (Handle)
+			if (Handle != NULL)
 		    GUI_EndDialog(Handle, 0);
 		}
 		
