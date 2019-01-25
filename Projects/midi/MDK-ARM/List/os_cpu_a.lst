@@ -443,11 +443,11 @@ ARM Macro Assembler    Page 7
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
 ork --depend=.\obj\os_cpu_a.d -o.\obj\os_cpu_a.o -IC:\Users\ek\Desktop\stm32-pr
-ojects\Projects\midi\MDK-ARM\RTE -IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0
-\Device\Include -IC:\Keil_v5\ARM\CMSIS\Include --predefine="__MICROLIB SETA 1" 
---predefine="__UVISION_VERSION SETA 514" --predefine="STM32F10X_HD SETA 1" --li
-st=.\list\os_cpu_a.lst ..\..\..\Libraries\uCOS-II\Ports\ARM-Cortex-M3\RealView\
-os_cpu_a.asm
+ojects\Projects\midi\MDK-ARM\RTE -IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0
+ -IC:\Keil_v5\ARM\CMSIS\Include -IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\
+Device\Include --predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION S
+ETA 514" --predefine="STM32F10X_HD SETA 1" --list=.\list\os_cpu_a.lst ..\..\..\
+Libraries\uCOS-II\Ports\ARM-Cortex-M3\RealView\os_cpu_a.asm
 
 
 

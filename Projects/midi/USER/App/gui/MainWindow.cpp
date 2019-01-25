@@ -4,13 +4,17 @@
 #include "SheetFolderChooserWindow.hpp"
 #include "ChordFileChooserWindow.hpp"
 #include "KeyboardWindow.hpp"
+#include <EK/ek_gpio.hpp>
 
 #define INCLUDE_FROM_CLASS
 #include "MainWindowDLG.c"
 
+static GPIO_Pin UserKeyA("PC13");
+GPIO_Pin LED("PB0", GPIO_Mode_Out_PP);
+
 extern WM_HWIN CreateMainWindow(void);
 MainWindow* CurrentMainWindow = NULL;
-extern GUI_CONST_STORAGE GUI_BITMAP bmsheetFolder, bmchordFile;
+extern GUI_CONST_STORAGE GUI_BITMAP bmsheetFolder, bmchordFile, bmkeyboard;
 extern SD_Card SD_Card;
 extern MIDI::MIDI Midi;
 
@@ -32,6 +36,7 @@ MainWindow::~MainWindow() {
 void MainWindow::Initialize(void) {
 	ForceButtonStyle(SheetFolderButton, &bmsheetFolder, GUI_STYLE_MAIN);
 	ForceButtonStyle(ChordFileButton, &bmchordFile, GUI_STYLE_MAIN);
+	ForceButtonStyle(KeyboardButton, &bmkeyboard, GUI_STYLE_MAIN);
 }
 
 void MainWindow::ChooseSheetFolderButtonClicked(void) {
@@ -52,5 +57,7 @@ void MainWindow::KeyboardButtonClicked(void) {
 }
 
 bool MainWindow::Refresh(void) {
+	if (UserKeyA.Get() == 0)
+		KeyboardButtonClicked();
   return true;
 }
